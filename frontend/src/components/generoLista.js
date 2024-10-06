@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getgenero, creategenero } from '../services/generoServ';
+import GenreUpdateForm from './generoUp';
 
 const GeneroList = () => {
     const [generos, setGeneros] = useState([]);
@@ -7,6 +8,7 @@ const GeneroList = () => {
         name: '',
         status: true
     });
+    const [selectedGeneroId, setSelectedGeneroId] = useState(null);
 
     useEffect(() => {
         fetchGenero();
@@ -31,14 +33,30 @@ const GeneroList = () => {
         }
     }
 
+    const handleUpdateClick = (id) => {
+        setSelectedGeneroId(id); // Establecer el ID del género seleccionado
+    };
+
     return (
         <div>
             <h2>Lista de Géneros</h2>
             <ul>
                 {generos.map((genre) => (
-                    <li key={genre._id}>{genre.name} - {genre.status ? 'Activo' : 'Inactivo'}</li>
+                    <li key={genre._id}>{genre.name} - {genre.status ? 'Activo' : 'Inactivo'}
+                    <button onClick={() => handleUpdateClick(genre._id) }>Actualizar</button>
+                    </li>
                 ))}
             </ul>
+
+            {selectedGeneroId && (
+                <div>
+                    <h3>Actualizar Género</h3>
+                    <GenreUpdateForm
+                        genreId={selectedGeneroId}
+                        onUpdate={fetchGenero} // Callback para recargar la lista después de la actualización
+                    />
+                </div>
+            )}
 
             <h3>Agregar Nuevo Género</h3>
             <form onSubmit={handleSubmit}>

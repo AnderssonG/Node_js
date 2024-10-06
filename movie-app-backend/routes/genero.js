@@ -42,6 +42,7 @@ router.delete('/:id', async (req, res) => {
         const genre = await Genre.findByIdAndDelete(req.params.id);
         if (!genre) {
             return res.status(404).send();
+            
         }
         res.status(200).send(genre);
     } catch (error) {

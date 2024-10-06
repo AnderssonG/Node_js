@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 // Obtener todas las producciones
 router.get('/', async (req, res) => {
     try {
-        const media = await Media.find().populate('genre director producer type');
+        const media = await Media.find();
         res.status(200).send(media);
     } catch (error) {
         res.status(500).send(error);

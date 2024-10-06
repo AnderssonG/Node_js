@@ -4,6 +4,7 @@ import { getgenero } from '../services/generoServ';
 import { getDirectors } from '../services/directorServ';
 import { getProducers } from '../services/productoraServ';
 import { getTypes } from '../services/tipoServ';
+import MediaUpdateForm from './mediaUp';
 
 const MediaList = () => {
     const [media, setMedia] = useState([]);
@@ -25,6 +26,8 @@ const MediaList = () => {
     const [producers, setProducers] = useState([]);
     const [types, setTypes] = useState([]);
 
+    const [selectedMediaId, setSelectedMediaId]= useState(null);
+    
     useEffect(() => {
         fetchMedia();
         fetchGenres();
@@ -80,6 +83,10 @@ const MediaList = () => {
         }
     };
 
+    const handleUpdateClick = (id) => {
+        setSelectedMediaId(id); // Establecer el ID del género seleccionado
+    };
+
     const handleChange = (e) => {
         setNewMedia({
             ...newMedia,
@@ -94,9 +101,23 @@ const MediaList = () => {
                 {media.map((m) => (
                     <li key={m._id}>
                         <a href={m.url}>{m.title} - {m.serial} ({m.releaseYear})</a>
+                        <button onClick={()=> handleUpdateClick(m._id)}>Actualizar</button>
                     </li>
                 ))}
             </ul>
+
+            {selectedMediaId && (
+                <div>
+                    <h3>
+                        Actualizar Media
+                    </h3>
+                    <MediaUpdateForm
+                        mediaId={selectedMediaId}
+                        onUpdate={fetchMedia}/>
+                </div>
+            )
+
+            }
 
             <h3>Agregar Nueva Media</h3>
             <form onSubmit={handleSubmit}>
