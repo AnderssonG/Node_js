@@ -16,10 +16,7 @@ app.use('/productora', require('./routes/productora'));
 app.use('/tipo', require('./routes/tipo'));
 app.use('/media', require('./routes/media'));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+;
 
 
 
