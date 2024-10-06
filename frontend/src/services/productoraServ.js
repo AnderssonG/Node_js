@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/productora';
+const API_URL = 'https://node-js-vula.onrender.com/productora';
 
 export const getProducers = async () => {
     const response = await axios.get(API_URL);

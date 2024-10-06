@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/director';
+const API_URL = 'https://node-js-vula.onrender.com/director';
 
 export const getDirectors = async () => {
     const response = await axios.get(API_URL);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/genero';
+const API_URL = 'https://node-js-vula.onrender.com/genero';
 
 export const getgenero = async() => {
 
