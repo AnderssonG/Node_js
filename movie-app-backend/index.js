@@ -17,9 +17,7 @@ app.use('/tipo', require('./routes/tipo'));
 app.use('/media', require('./routes/media'));
 
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+;
 
 
 
